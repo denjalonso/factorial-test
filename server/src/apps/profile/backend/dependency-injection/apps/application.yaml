@@ -4,6 +4,6 @@ services:
     class: ../../controllers/StatusGetController
     arguments: []
 
-#  Apps.profile.controllers.CoursePutController:
-#    class: ../../controllers/CoursePutController
-#    arguments: [""]
+  Apps.profile.controllers.UserPutController:
+    class: ../../controllers/UserPutController
+    arguments: ["@Profile.user.application.UserCreator"]

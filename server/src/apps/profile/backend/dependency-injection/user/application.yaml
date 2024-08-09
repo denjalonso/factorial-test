@@ -1,0 +1,9 @@
+services:
+
+  Profile.user.application.UserCreator:
+    class: ../../../../../contexts/profile/user/application/UserCreator
+    arguments: ["@Profile.user.domain.UserRepository"]
+
+  Profile.user.domain.UserRepository:
+    class: ../../../../../contexts/profile/user/infrastructure/persistence/FileUserRepository
+    arguments: [""]

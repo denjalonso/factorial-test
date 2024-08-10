@@ -6,13 +6,13 @@ import Router from 'express-promise-router';
 import helmet from 'helmet';
 import * as http from 'http';
 import httpStatus from 'http-status';
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 import { ApolloServer } from '@apollo/server';
 import { buildSubgraphSchema } from '@apollo/subgraph';
 import { expressMiddleware } from '@apollo/server/express4';
-import resolvers from "./resolvers";
-import { readFileSync } from "fs";
-import cors from "cors";
+import resolvers from './resolvers';
+import { readFileSync } from 'fs';
+import cors from 'cors';
 
 import { registerRoutes } from './routes';
 
@@ -21,13 +21,13 @@ const app = express();
 let httpServer: http.Server;
 
 const typeDefs = gql(
-	readFileSync("schema.graphql", {
-		encoding: "utf-8",
+	readFileSync('schema.graphql', {
+		encoding: 'utf-8'
 	})
 );
 
 const server = new ApolloServer({
-	schema: buildSubgraphSchema({ typeDefs, resolvers }),
+	schema: buildSubgraphSchema({ typeDefs, resolvers })
 });
 
 async function start() {
@@ -51,21 +51,14 @@ async function start() {
 		res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
 	});
 
-	app.use(
-		'/graphql',
-		cors(),
-		express.json(),
-		expressMiddleware(server),
-	);
+	app.use('/graphql', cors(), express.json(), expressMiddleware(server));
 }
 
 async function listen(port: string): Promise<void> {
 	return new Promise(resolve => {
 		const env = app.get('env') as string;
 		httpServer = app.listen(port, () => {
-			console.log(
-				`  Mock Backend App is running at http://localhost:${port} in ${env} mode`
-			);
+			console.log(`  Mock Backend App is running at http://localhost:${port} in ${env} mode`);
 			console.log('  Press CTRL-C to stop\n');
 			resolve();
 		});
@@ -125,9 +118,7 @@ export class Server {
 		return new Promise(resolve => {
 			const env = this.express.get('env') as string;
 			this.httpServer = this.express.listen(this.port, () => {
-				console.log(
-					`  Mock Backend App is running at http://localhost:${this.port} in ${env} mode`
-				);
+				console.log(`  Mock Backend App is running at http://localhost:${this.port} in ${env} mode`);
 				console.log('  Press CTRL-C to stop\n');
 				resolve();
 			});
@@ -157,4 +148,4 @@ export class Server {
 	}
 }
 
-export { start, listen, getHTTPServer, stop }
+export { start, listen, getHTTPServer, stop };

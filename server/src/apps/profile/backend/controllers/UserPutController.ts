@@ -7,7 +7,8 @@ export class UserPutController implements Controller {
 	constructor(private userCreator: UserCreator) {}
 
 	async run(req: Request, res: Response): Promise<void> {
-		const { id, name } = req.body; // TODO: improving type checking
+		const { id, name } = req.body;
+
 		await this.userCreator.run(id, name); // Recordar que si aquí se lanza una excepción, tenemos un middleware que la captura y la devuelve
 
 		res.status(httpStatus.CREATED).send();

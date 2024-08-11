@@ -10,7 +10,7 @@ describe('UserCreator', () => {
 		const name = 'name';
 		const expectedUser = new User({ id, name });
 
-		await creator.run(id, name);
+		await creator.run({ id, name });
 
 		repository.assertSaveHasBeenCalledWith(expectedUser);
 	});

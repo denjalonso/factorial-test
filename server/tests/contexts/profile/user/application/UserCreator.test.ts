@@ -27,7 +27,7 @@ describe('UserCreator', () => {
 
 	it('should throw error if course name length is exceeded', async () => {
 		const id = '0766c602-d4d4-48b6-9d50-d3253123275e';
-		const name = 'some-name'.repeat(30);
+		const name = 'Parrot'.repeat(30);
 
 		expect(() => {
 			const user = new User({

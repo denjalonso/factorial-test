@@ -13,8 +13,8 @@ export class UserCreator {
 
 	async run(request: UserCreatorRequest): Promise<void> {
 		const { id, name } = request;
-		const course = new User(new Uuid(id), new UserName(name));
+		const user = new User(new Uuid(id), new UserName(name));
 
-		return this.repository.save(course);
+		return this.repository.save(user);
 	}
 }

@@ -9,10 +9,14 @@ export class UserPutController implements Controller {
 	constructor(private userCreator: UserCreator) {}
 
 	async run(req: UserPutRequest, res: Response): Promise<void> {
-		const { id, name } = req.body;
+		try {
+			const { id, name } = req.body;
 
-		await this.userCreator.run({ id, name }); // Recordar que si aquí se lanza una excepción, tenemos un middleware que la captura y la devuelve
+			await this.userCreator.run({ id, name }); // Recordar que si aquí se lanza una excepción, tenemos un middleware que la captura y la devuelve
 
-		res.status(httpStatus.CREATED).send();
+			res.status(httpStatus.CREATED).send();
+		} catch (error) {
+			res.status(httpStatus.INTERNAL_SERVER_ERROR).send();
+		}
 	}
 }

@@ -28,7 +28,7 @@
     "bson": "^4.5.2",
     "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
-    "convict": "6.2.4",
+    "convict": "6.2.0",
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
     "copy": "^0.3.2",
@@ -44,8 +44,9 @@
     "http-status": "^1.5.0",
     "node-dependency-injection": "^2.7.1",
     "nunjucks": "^3.2.3",
+    "pg": "^8.7.1",
     "ts-node": "^10.2.1",
-    "typeorm": "0.3.20",
+    "typeorm": "^0.2.37",
     "uuid": "10.0.0",
     "uuid-validate": "0.0.3",
     "winston": "^3.3.3"
@@ -83,7 +84,10 @@
     "supertest": "^6.1.6",
     "ts-jest": "29.2.4",
     "ts-node-dev": "^1.1.8",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "~1.18.0",
+    "tslint-eslint-rules": "^5.4.0"
   },
   "husky": {
     "hooks": {
@@ -92,7 +96,8 @@
   },
   "lint-staged": {
     "{src,tests}/**/*.ts": [
-      "npm run lint:fix",
+      "prettier --write",
+      "tslint --fix",
       "git add"
     ]
   }

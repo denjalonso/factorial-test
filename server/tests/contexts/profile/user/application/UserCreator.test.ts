@@ -23,7 +23,7 @@ describe('UserCreator', () => {
 		repository.assertSaveHasBeenCalledWith(expectedUser);
 	});
 
-	it('should throw error if course name length is exceeded', async () => {
+	it('should throw error if user name length is exceeded', async () => {
 		expect(() => {
 			const request = CreateUserRequestMother.invalidRequest();
 

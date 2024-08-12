@@ -1,13 +1,19 @@
 services:
-
   Profile.TypeOrmConfig:
-    class: ../../../../../contexts/profile/shared/infrastructure/persistence/postgre/TypeOrmConfigFactory
-    method: 'createConfig'
+    factory:
+      class: ../../../../../contexts/profile/shared/infrastructure/persistence/postgre/TypeOrmConfigFactory
+      method: 'createConfig'
+
+  Profile.ConnectionManager:
+    factory:
+      class: ../../../../../contexts/shared/infrastructure/persistence/typeorm/TypeOrmClientFactory
+      method: 'createClient'
+    arguments: [ 'profile', '@Profile.TypeOrmConfig' ]
+
+  Profile.user.domain.UserRepository:
+    class: ../../../../../contexts/profile/user/infrastructure/persistence/TypeOrmUserRepository
+    arguments: ["@Profile.ConnectionManager"]
 
   Profile.user.application.UserCreator:
     class: ../../../../../contexts/profile/user/application/UserCreator
     arguments: ["@Profile.user.domain.UserRepository"]
-
-  Profile.user.domain.UserRepository:
-    class: ../../../../../contexts/profile/user/infrastructure/persistence/FileUserRepository
-    arguments: [""]

@@ -1,2 +1,7 @@
 imports:
   - { resource: ./application.yaml }
+
+services:
+  Profile.EnvironmentArranger:
+    class: ../../../../../tests/contexts/shared/infrastructure/typeorm/TypeOrmEnvironmentArranger
+    arguments: ['@Profile.ConnectionManager']

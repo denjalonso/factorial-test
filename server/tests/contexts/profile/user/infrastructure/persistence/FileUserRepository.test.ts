@@ -5,10 +5,7 @@ import { UserName } from '../../../../../../src/contexts/profile/user/domain/Use
 
 describe('FileUserRepository', () => {
 	it('should have a user', async () => {
-		const expectedUser = new User({
-			id: new Uuid('7f5c6d16-0a5f-4789-b372-5d7e11bcfb28'),
-			name: new UserName('Parrot')
-		});
+		const expectedUser = new User(new Uuid('7f5c6d16-0a5f-4789-b372-5d7e11bcfb28'), new UserName('Parrot'));
 		const repository = new FileUserRepository();
 
 		await repository.save(expectedUser);

@@ -14,7 +14,7 @@ export class FileUserRepository implements UserRepository {
 		const userData = await fs.promises.readFile(this.filePath(userId));
 		const { id, name } = deserialize(userData);
 
-		return new User({ id, name });
+		return new User(id, name);
 	}
 
 	private filePath(id: string): string {

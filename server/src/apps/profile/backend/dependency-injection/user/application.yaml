@@ -1,5 +1,9 @@
 services:
 
+  Profile.TypeOrmConfig:
+    class: ../../../../../contexts/profile/shared/infrastructure/persistence/postgre/TypeOrmConfigFactory
+    method: 'createConfig'
+
   Profile.user.application.UserCreator:
     class: ../../../../../contexts/profile/user/application/UserCreator
     arguments: ["@Profile.user.domain.UserRepository"]

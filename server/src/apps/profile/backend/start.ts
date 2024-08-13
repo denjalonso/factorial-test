@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { ProfileBackendApp } from './ProfileBackendApp';
 
 try {

@@ -6,28 +6,31 @@ import Router from 'express-promise-router';
 import helmet from 'helmet';
 import * as http from 'http';
 import httpStatus from 'http-status';
-import gql from 'graphql-tag';
 import { ApolloServer } from '@apollo/server';
-import { buildSubgraphSchema } from '@apollo/subgraph';
 import { expressMiddleware } from '@apollo/server/express4';
-import resolvers from './resolvers';
-import { readFileSync } from 'fs';
+import { buildSchemaSync } from 'type-graphql';
 import cors from 'cors';
 
-import { registerRoutes } from './routes';
+import { registerRoutes } from './rest/routes';
+import container from './dependency-injection';
+import { UserResolver } from './graphql/resolvers/UserResolver';
+import path from 'node:path';
 
 const app = express();
 
 let httpServer: http.Server;
 
-const typeDefs = gql(
-	readFileSync('schema.graphql', {
-		encoding: 'utf-8'
-	})
-);
+const schema = buildSchemaSync({
+	resolvers: [UserResolver],
+	container: {
+		get: (cls) => container.get(cls.name),
+	},
+	emitSchemaFile: path.resolve(__dirname, 'graphql/schema/schema.graphql'),
+	validate: false
+});
 
 const server = new ApolloServer({
-	schema: buildSubgraphSchema({ typeDefs, resolvers })
+	schema
 });
 
 async function start() {

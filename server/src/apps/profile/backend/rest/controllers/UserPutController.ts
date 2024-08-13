@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { UserCreator } from '../../../../contexts/profile/user/application/UserCreator';
+import { UserCreator } from '../../../../../contexts/profile/user/application/UserCreator';
 import { Controller } from './Controller';
 
 type UserPutRequest = Request & { body: { id: string; name: string } };

@@ -11,7 +11,7 @@ export class TypeOrmUserRepository extends TypeOrmRepository<User> implements Us
 		return this.persist(user);
 	}
 
-	public async search(id: UserId): Promise<Nullable<User>> {
+	public async find(id: UserId): Promise<Nullable<User>> {
 		const repository = await this.repository();
 
 		const user = await repository.findOne({ id });

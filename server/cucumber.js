@@ -1,4 +1,6 @@
 /* eslint-disable camelcase */
+require('reflect-metadata');
+
 const common = [
 	'--require-module ts-node/register' // Load TypeScript module
 ];

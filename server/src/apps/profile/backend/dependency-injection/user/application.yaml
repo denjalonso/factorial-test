@@ -17,3 +17,7 @@ services:
   Profile.user.application.UserCreator:
     class: ../../../../../contexts/profile/user/application/UserCreator
     arguments: ["@Profile.user.domain.UserRepository"]
+
+  Profile.user.application.UserFinder:
+    class: ../../../../../contexts/profile/user/application/UserFinder
+    arguments: ["@Profile.user.domain.UserRepository"]

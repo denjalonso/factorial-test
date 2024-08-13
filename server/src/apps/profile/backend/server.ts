@@ -23,7 +23,7 @@ let httpServer: http.Server;
 const schema = buildSchemaSync({
 	resolvers: [UserResolver],
 	container: {
-		get: (cls) => container.get(cls.name),
+		get: cls => container.get(cls.name)
 	},
 	emitSchemaFile: path.resolve(__dirname, 'graphql/schema/schema.graphql'),
 	validate: false

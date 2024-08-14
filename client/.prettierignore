@@ -1,0 +1,14 @@
+# testing
+/coverage
+
+# production
+/build
+
+public/mockServiceWorker.js
+
+pnpm-lock.yaml
+workspace.jsonc
+
+# generated
+**/generated/**/*
+src/version.generated.ts

@@ -1,10 +1,18 @@
-import { DefaultErrorBoundary } from 'components/error';
-import { ProfileApolloProvider } from 'context/apollo-provider';
+import { DefaultErrorBoundary } from './components/error';
+import { ProfileApolloProvider } from './context/apollo-provider';
+import { ChakraProvider } from '@chakra-ui/react';
+import PageFromURL from './routes';
 
 function App() {
   return (
     <DefaultErrorBoundary withoutChakra={true}>
-      <ProfileApolloProvider>User Profile</ProfileApolloProvider>
+      <ProfileApolloProvider>
+        <ChakraProvider>
+          <DefaultErrorBoundary>
+            <PageFromURL />
+          </DefaultErrorBoundary>
+        </ChakraProvider>
+      </ProfileApolloProvider>
     </DefaultErrorBoundary>
   );
 }

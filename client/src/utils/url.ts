@@ -24,7 +24,7 @@ function convertValue(value: string): any {
 }
 
 function decodeParameters(
-    searchParams: URLSearchParams,
+  searchParams: URLSearchParams,
 ): Record<string, unknown> {
   const data: { [key: string]: any } = {};
 

@@ -126,9 +126,4 @@ const DevDisplayError = ({ error }: DevDisplayErrorProps) => {
   );
 };
 
-export {
-  ErrorPage as default,
-  ErrorPage,
-  NoChakraError,
-  UnknownError,
-};
+export { ErrorPage as default, ErrorPage, NoChakraError, UnknownError };

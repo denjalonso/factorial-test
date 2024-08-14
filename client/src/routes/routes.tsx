@@ -3,6 +3,7 @@ import { NotFound } from '../components/error';
 import { Loading } from '../components/loading';
 import { navigateToPath } from '../utils/navigation';
 import { getParsedURL } from '../utils/url';
+import { DashboardPage } from '../pages/dashboard.tsx';
 
 const UserList = React.lazy(() => import('../pages/user-list'));
 
@@ -15,7 +16,7 @@ interface PageProps {
   };
 }
 
-function DashboardPage({ pathname }: PageProps) {
+function DashboardRouteView({ pathname }: PageProps) {
   switch (pathname) {
     case '/':
       navigateToPath(usersListPath);
@@ -41,7 +42,9 @@ export default function PageFromURL() {
 
   return (
     <Suspense fallback={<Loading />}>
-        <DashboardPage pathname={pathname} params={params} />
+      <DashboardPage>
+        <DashboardRouteView pathname={pathname} params={params} />
+      </DashboardPage>
     </Suspense>
   );
 }

@@ -1,9 +1,11 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { InMemoryCache } from '@apollo/client';
 import {
   EnvironmentName,
   FALLBACK_CONFIG,
   HOST_TO_APPENV,
 } from '../constants/environments';
+import { createApolloClient } from '../utils/apollo/client';
+import { abstractTypes } from '../types';
 
 const BASE_URLS: Record<EnvironmentName, string> = {
   local: 'http://localhost:8080',
@@ -30,9 +32,11 @@ export const getApolloClient = () => {
     profileBackendEnv: hostEnvName,
   });
 
-  return new ApolloClient({
+  return createApolloClient({
     uri: profileBackendUrl,
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      possibleTypes: abstractTypes.possibleTypes,
+    }),
   });
 };
 

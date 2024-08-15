@@ -1,0 +1,31 @@
+overwrite: true
+schema: 'schema.graphql'
+config:
+  content:
+    - '// THIS IS A GENERATED FILE, DO NOT EDIT!'
+    - '// organize-imports-ignore'
+documents:
+  - './src/**/*.{ts,tsx}'
+  - '!./src/**/*.d.{ts,tsx}'
+  - ./src/**/*.graphql
+  - '!./src/**/*.generated.{ts,tsx}'
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+generates:
+  src/:
+    preset: near-operation-file
+    presetConfig:
+      extension: .generated.ts
+      baseTypesPath: ./types/graphql/schema.generated.ts
+    config:
+      inlineFragmentTypes: 'combine'
+      dedupeFragments: true
+      defaultScalarType: string
+    plugins:
+      - add
+      - named-operations-object
+      - typescript-operations:
+          skipTypename: false
+      - typescript-react-apollo:
+          documentMode: documentNodeImportFragments

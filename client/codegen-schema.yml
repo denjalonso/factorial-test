@@ -1,0 +1,32 @@
+overwrite: true
+schema: http://localhost:8080/graphql
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+config:
+  content:
+    - '// THIS IS A GENERATED FILE, DO NOT EDIT!'
+    - '// organize-imports-ignore'
+generates:
+  schema.graphql:
+    config:
+      content:
+        - '# THIS IS A GENERATED FILE, DO NOT EDIT!'
+        - '# Generated from the "${APOLLO_GRAPH_VARIANT}" graph variant on ${CURRENT_DATE_TIME}'
+    plugins:
+      - add
+      - schema-ast
+  src/types/graphql/schema.generated.ts:
+    config:
+      namingConvention:
+        enumValues: keep
+      defaultScalarType: string
+    presetConfig:
+      baseTypesPath: types.ts
+    plugins:
+      - add
+      - typescript
+  src/types/graphql/abstract-possible-types.generated.ts:
+    plugins:
+      - add
+      - fragment-matcher

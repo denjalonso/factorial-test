@@ -12,7 +12,7 @@ describe('resolveRoute', () => {
   });
 
   test('invalidPath: renders NotFound component with showHomeNav prop set to false for invalid path part', () => {
-    const params = { userToken: '123' };
+    const params = { };
 
     const result = resolveRoute('invalidPath', params);
     render(result);

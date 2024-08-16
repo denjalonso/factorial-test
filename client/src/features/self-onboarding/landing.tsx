@@ -22,13 +22,13 @@ const UserOnboardingLandingHosted = ({
     onboarding.status === HostedOnboardingStatus.COMPLETED &&
     onboarding.user
   ) {
-    return <>complete</>;
+    return <>user onboarding hosted complete</>;
   } else if (
     (onboarding.status === HostedOnboardingStatus.INVITED ||
       onboarding.status === HostedOnboardingStatus.STARTED) &&
     onboarding.user
   ) {
-    return <>welcome</>;
+    return <>user onboarding hosted welcome</>;
   } else {
     return <UnknownError />;
   }

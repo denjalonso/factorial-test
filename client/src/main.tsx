@@ -6,12 +6,12 @@ import './index.css';
 async function enableMocking() {
   if (
     process.env.NODE_ENV === 'development' &&
-      Boolean(import.meta.env.VITE_DEV_MOCKS) === true
+    Boolean(import.meta.env.VITE_DEV_MOCKS) === true
   ) {
-    const {worker} = await import('./test/browser.ts')
+    const { worker } = await import('./test/browser.ts');
     worker.start({
       onUnhandledRequest: 'warn',
-    })
+    });
   }
 }
 

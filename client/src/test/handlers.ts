@@ -1,7 +1,7 @@
 import { graphql } from 'msw';
 import { GRAPHQL_ENV_ENDPOINTS } from '../services/profile-backend-service';
-import {UsersListQuery} from "../features/user-list/user-list.generated.ts";
-import {CreateUserMutation} from "../features/create-user/create-user.generated.ts";
+import { UsersListQuery } from '../features/user-list/user-list.generated.ts';
+import { CreateUserMutation } from '../features/create-user/create-user.generated.ts';
 
 graphql.link(GRAPHQL_ENV_ENDPOINTS.local);
 

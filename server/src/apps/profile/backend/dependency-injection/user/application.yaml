@@ -21,3 +21,7 @@ services:
   Profile.user.application.UserFinder:
     class: ../../../../../contexts/profile/user/application/UserFinder
     arguments: ["@Profile.user.domain.UserRepository"]
+
+  Profile.user.application.UsersFinder:
+    class: ../../../../../contexts/profile/user/application/UsersFinder
+    arguments: ["@Profile.user.domain.UserRepository"]

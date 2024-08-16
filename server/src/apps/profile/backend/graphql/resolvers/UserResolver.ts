@@ -3,10 +3,15 @@ import { User } from '../schema/User';
 import { CreateUserInput } from '../schema/UserInput';
 import { UserFinder } from '../../../../../contexts/profile/user/application/UserFinder';
 import { UserCreator } from '../../../../../contexts/profile/user/application/UserCreator';
+import { UsersFinder } from '../../../../../contexts/profile/user/application/UsersFinder';
 
 @Resolver(of => User)
 export class UserResolver {
-	constructor(private readonly userCreator: UserCreator, private readonly userFinder: UserFinder) {}
+	constructor(
+		private readonly userCreator: UserCreator,
+		private readonly userFinder: UserFinder,
+		private readonly usersFinder: UsersFinder
+	) {}
 
 	@Query(_returns => User, { nullable: true })
 	async user(@Arg('id') id: string): Promise<User> {
@@ -17,7 +22,7 @@ export class UserResolver {
 
 	@Query(_returns => [User], { nullable: true })
 	async users(): Promise<User[]> {
-		return [];
+		return await this.usersFinder.run();
 	}
 
 	@Mutation(_returns => User)

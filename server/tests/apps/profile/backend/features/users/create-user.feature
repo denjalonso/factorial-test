@@ -14,7 +14,7 @@ Feature: Create new user
     Then the response status code should be 201
     And the response should be empty
 
-    Given I send a graphql request with mutation and variables:
+    Given I send a graphql request with query and variables:
     """
     {
         "query": "mutation CreateUser($user: CreateUserInput!) { createUser(input: $user) { id name } }",

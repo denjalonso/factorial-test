@@ -10,4 +10,4 @@ services:
 
   UserResolver:
     class: ../../graphql/resolvers/UserResolver
-    arguments: ["@Profile.user.application.UserCreator", "Profile.user.application.UserFinder"]
+    arguments: ["@Profile.user.application.UserCreator", "@Profile.user.application.UserFinder", "@Profile.user.application.UsersFinder"]

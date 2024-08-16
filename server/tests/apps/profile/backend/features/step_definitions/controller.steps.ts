@@ -12,7 +12,7 @@ Given('I send a GET request to {string}', (route: string) => {
 	_request = request(application.httpServer).get(route);
 });
 
-Given('I send a graphql request with mutation and variables:', (mutation: string) => {
+Given('I send a graphql request with query and variables:', (mutation: string) => {
 	const queryData = JSON.parse(mutation);
 	console.log(queryData);
 	_request = request(application.httpServer).post('/graphql').send(queryData);

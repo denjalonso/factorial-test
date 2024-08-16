@@ -4,6 +4,7 @@ import { Loading } from '../components/loading';
 import { navigateToPath } from '../utils/navigation';
 import { getParsedURL } from '../utils/url';
 import { DashboardPage } from '../pages/dashboard.tsx';
+import resolveHostedRoute from './hosted';
 
 const UserList = React.lazy(() => import('../pages/user-list'));
 
@@ -28,6 +29,18 @@ function DashboardRouteView({ pathname }: PageProps) {
   }
 }
 
+const hostedRegex = /\/hosted\/\S+/;
+
+function StandalonePage({ pathname, params }: PageProps) {
+  const parts = pathname.split('/');
+
+  if (pathname.match(hostedRegex)?.input) {
+    return resolveHostedRoute(parts[2], params);
+  } else {
+    return <NotFound showHomeNav={false} />;
+  }
+}
+
 export default function PageFromURL() {
   const {
     pathname,
@@ -40,10 +53,17 @@ export default function PageFromURL() {
     }
   }, [pathname, url]);
 
+  const renderStandalone =
+    !!params['standalone'] || !!pathname.match(hostedRegex);
+
   return (
     <Suspense fallback={<Loading />}>
       <DashboardPage>
-        <DashboardRouteView pathname={pathname} params={params} />
+        {renderStandalone ? (
+          <StandalonePage pathname={pathname} params={params} />
+        ) : (
+          <DashboardRouteView pathname={pathname} params={params} />
+        )}
       </DashboardPage>
     </Suspense>
   );

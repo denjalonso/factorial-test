@@ -7,7 +7,7 @@ describe('UserList', () => {
     {
       id: 'anotherid',
       name: 'Parroty FilTeR',
-    }
+    },
   ];
   const setup = ({
     users = defaultWorkers,

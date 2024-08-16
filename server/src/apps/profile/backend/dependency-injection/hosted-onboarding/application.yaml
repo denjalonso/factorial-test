@@ -1,0 +1,11 @@
+services:
+  Profile.TypeOrmConfig:
+    factory:
+      class: ../../../../../contexts/profile/shared/infrastructure/persistence/postgre/TypeOrmConfigFactory
+      method: 'createConfig'
+
+  Profile.ConnectionManager:
+    factory:
+      class: ../../../../../contexts/shared/infrastructure/persistence/typeorm/TypeOrmClientFactory
+      method: 'createClient'
+    arguments: [ 'profile', '@Profile.TypeOrmConfig' ]

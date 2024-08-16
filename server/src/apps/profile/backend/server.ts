@@ -14,6 +14,7 @@ import cors from 'cors';
 import { registerRoutes } from './rest/routes';
 import container from './dependency-injection';
 import { UserResolver } from './graphql/resolvers/UserResolver';
+import { HostedOnboardingResolver } from "./graphql/resolvers/HostedOnboardingResolver";
 import path from 'node:path';
 
 const app = express();
@@ -21,7 +22,7 @@ const app = express();
 let httpServer: http.Server;
 
 const schema = buildSchemaSync({
-	resolvers: [UserResolver],
+	resolvers: [UserResolver, HostedOnboardingResolver],
 	container: {
 		get: cls => container.get(cls.name)
 	},

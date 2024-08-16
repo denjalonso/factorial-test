@@ -3,16 +3,34 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input CreateHostedWorkerOnboardingInput {
+  id: ID!
+}
+
 input CreateUserInput {
   id: ID!
   name: String!
 }
 
+type HostedOnboarding {
+  id: ID!
+  status: HostedOnboardingStatus!
+  user: User
+}
+
+enum HostedOnboardingStatus {
+  COMPLETED
+  INVITED
+  STARTED
+}
+
 type Mutation {
+  createHostedUserOnboarding(input: CreateHostedWorkerOnboardingInput!): HostedOnboarding!
   createUser(input: CreateUserInput!): User!
 }
 
 type Query {
+  hostedUserOnboarding(id: String!): HostedOnboarding
   user(id: String!): User
   users: [User!]
 }

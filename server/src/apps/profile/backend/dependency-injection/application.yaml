@@ -1,3 +1,4 @@
 imports:
   - { resource: ./apps/application.yaml }
   - { resource: ./user/application.yaml }
+  - { resource: ./hosted-onboarding/application.yaml }

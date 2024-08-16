@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import {gql, useApolloClient} from '@apollo/client';
 import { Box, Button, HStack } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
@@ -8,6 +8,7 @@ import { Form } from '../../components/form/form.tsx';
 import { CreateUserInput } from '../../types';
 import { useCreateUserMutation } from './create-user.generated.ts';
 import { UserFormFields } from '../user-form/user-form-fields.tsx';
+import {namedOperations} from "../user-list/user-list.generated.ts";
 
 gql`
   mutation CreateUser($input: CreateUserInput!) {
@@ -32,6 +33,7 @@ export default function CreateUserForm({
 }: CreateUserFormProps) {
   const methods = useForm<CreateUserInput>({ defaultValues: { name: '' } });
   const [createUserMutation] = useCreateUserMutation();
+  const apolloClient = useApolloClient();
 
   const onSubmit = (data: CreateUserInput) => {
     const { name } = data;
@@ -45,6 +47,15 @@ export default function CreateUserForm({
       onCompleted: () => {
         onCreated?.();
       },
+      refetchQueries: () => {
+        const queries = [
+          namedOperations.Query.UsersList
+        ];
+        const activeQueries = Array.from(
+            apolloClient.getObservableQueries('active').values(),
+        ).map((obsQuery) => obsQuery.queryName);
+        return queries.filter((queryName) => activeQueries.includes(queryName));
+      }
     });
   };
 

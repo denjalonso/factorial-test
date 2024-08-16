@@ -15,6 +15,11 @@ export class UserResolver {
 		return new User(user.id, user.name);
 	}
 
+	@Query(_returns => [User], { nullable: true })
+	async users(): Promise<User[]> {
+		return [];
+	}
+
 	@Mutation(_returns => User)
 	async createUser(@Arg('input') recipeInput: CreateUserInput): Promise<User> {
 		await this.userCreator.run({ id: recipeInput.id, name: recipeInput.name });

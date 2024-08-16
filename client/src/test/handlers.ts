@@ -1,5 +1,7 @@
 import { graphql } from 'msw';
 import { GRAPHQL_ENV_ENDPOINTS } from '../services/profile-backend-service';
+import {UsersListQuery} from "../features/user-list/user-list.generated.ts";
+import {CreateUserMutation} from "../features/create-user/create-user.generated.ts";
 
 graphql.link(GRAPHQL_ENV_ENDPOINTS.local);
 
@@ -21,7 +23,14 @@ const allUsers = new Map([
 ]);
 
 export const handlers = [
-  graphql.mutation('CreateUser', (req, res, ctx) => {
+  graphql.query<UsersListQuery>('UsersList', (req, res, ctx) => {
+    return res(
+      ctx.data({
+        users: Array.from(allUsers.values()),
+      }),
+    );
+  }),
+  graphql.mutation<CreateUserMutation>('CreateUser', (req, res, ctx) => {
     console.log('CreateUser', req.variables);
     const { input: user } = req.variables;
 

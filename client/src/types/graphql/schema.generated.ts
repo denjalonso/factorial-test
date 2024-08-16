@@ -37,6 +37,7 @@ export type MutationCreateUserArgs = {
 export type Query = {
   __typename?: 'Query';
   user?: Maybe<User>;
+  users?: Maybe<Array<User>>;
 };
 
 export type QueryUserArgs = {

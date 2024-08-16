@@ -12,25 +12,25 @@ input CreateUserInput {
   name: String!
 }
 
-type HostedOnboarding {
-  id: ID!
-  status: HostedOnboardingStatus!
-  user: User
-}
-
 enum HostedOnboardingStatus {
   COMPLETED
   INVITED
   STARTED
 }
 
+type HostedUserOnboarding {
+  id: ID!
+  status: HostedOnboardingStatus!
+  user: User
+}
+
 type Mutation {
-  createHostedUserOnboarding(input: CreateHostedWorkerOnboardingInput!): HostedOnboarding!
+  createHostedUserOnboarding(input: CreateHostedWorkerOnboardingInput!): HostedUserOnboarding!
   createUser(input: CreateUserInput!): User!
 }
 
 type Query {
-  hostedUserOnboarding(id: String!): HostedOnboarding
+  hostedUserOnboarding(id: ID!): HostedUserOnboarding
   user(id: String!): User
   users: [User!]
 }

@@ -1,8 +1,8 @@
 import { Field, ID, InputType } from 'type-graphql';
-import { HostedOnboarding } from './HostedOnboarding';
+import { HostedUserOnboarding } from './HostedUserOnboarding';
 
 @InputType()
-export class CreateHostedWorkerOnboardingInput implements Partial<HostedOnboarding> {
+export class CreateHostedWorkerOnboardingInput implements Partial<HostedUserOnboarding> {
 	@Field(type => ID)
 	id!: string;
 }

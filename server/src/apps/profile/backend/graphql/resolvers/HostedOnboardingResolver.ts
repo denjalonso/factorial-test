@@ -1,18 +1,18 @@
-import { Arg, Mutation, Query, Resolver } from 'type-graphql';
-import { HostedOnboarding, HostedOnboardingStatus } from '../schema/HostedOnboarding';
+import {Arg, ID, Mutation, Query, Resolver} from 'type-graphql';
+import { HostedUserOnboarding, HostedOnboardingStatus } from '../schema/HostedUserOnboarding';
 import {CreateHostedWorkerOnboardingInput} from "../schema/CreateHostedUserOnboardingInput";
 
-@Resolver(of => HostedOnboarding)
+@Resolver(of => HostedUserOnboarding)
 export class HostedOnboardingResolver {
 	constructor() {}
 
-	@Query(_returns => HostedOnboarding, { nullable: true })
-	async hostedUserOnboarding(@Arg('id') id: string): Promise<HostedOnboarding> {
-		return new HostedOnboarding(id, HostedOnboardingStatus.STARTED);
+	@Query(_returns => HostedUserOnboarding, { nullable: true })
+	async hostedUserOnboarding(@Arg('id', () => ID) id: string): Promise<HostedUserOnboarding> {
+		return new HostedUserOnboarding(id, HostedOnboardingStatus.STARTED);
 	}
 
-	@Mutation(_returns => HostedOnboarding)
-	async createHostedUserOnboarding(@Arg('input') recipeInput: CreateHostedWorkerOnboardingInput): Promise<HostedOnboarding> {
-		return new HostedOnboarding(recipeInput.id, HostedOnboardingStatus.STARTED);
+	@Mutation(_returns => HostedUserOnboarding)
+	async createHostedUserOnboarding(@Arg('input') recipeInput: CreateHostedWorkerOnboardingInput): Promise<HostedUserOnboarding> {
+		return new HostedUserOnboarding(recipeInput.id, HostedOnboardingStatus.STARTED);
 	}
 }

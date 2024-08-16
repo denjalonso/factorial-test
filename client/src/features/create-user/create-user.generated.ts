@@ -11,9 +11,6 @@ export const namedOperations = {
   Mutation: {
     CreateUser: 'CreateUser',
   },
-  Fragment: {
-    CreatedUser: 'CreatedUser',
-  },
 };
 export type CreateUserMutationVariables = Types.Exact<{
   input: Types.CreateUserInput;
@@ -24,25 +21,6 @@ export type CreateUserMutation = {
   createUser: { __typename?: 'User' } & UserFormFragment;
 };
 
-export type CreatedUserFragment = { __typename?: 'User'; id: string };
-
-export const CreatedUserFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'CreatedUser' },
-      typeCondition: {
-        kind: 'NamedType',
-        name: { kind: 'Name', value: 'User' },
-      },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }],
-      },
-    },
-  ],
-} as unknown as DocumentNode;
 export const CreateUserDocument = {
   kind: 'Document',
   definitions: [

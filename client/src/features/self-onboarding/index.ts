@@ -1,0 +1,1 @@
+export { UserOnboardingLandingHosted } from './landing';

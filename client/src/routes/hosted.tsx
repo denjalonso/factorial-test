@@ -1,14 +1,38 @@
+import React from 'react';
 import { NotFound } from '../components/error';
+
+const UserSelfOnboardingHosted = React.lazy(
+  () => import('../pages/user-onboarding-hosted'),
+);
 
 const EXPERIENCE_NAMES = ['user-onboarding'] as const;
 
 type HostedExperiencePath = (typeof EXPERIENCE_NAMES)[number];
 
+const SUPPORTED_PARAMETERS = [
+  'id',
+] as const;
+
+type ParameterProperty = typeof SUPPORTED_PARAMETERS[number];
+
+
 const hostedRoutes: Record<
   HostedExperiencePath,
   (params: Record<string, any>) => JSX.Element
 > = {
-  'user-onboarding': () => <>User onboarding hosted</>,
+  'user-onboarding': (params: Record<string, any>) => {
+    const requiredParams: Array<ParameterProperty> = ['id'];
+    const properties = ([] as Array<ParameterProperty>).concat(requiredParams);
+    const missingProperty = properties.find(
+        (key) => !Object.prototype.hasOwnProperty.call(params, key),
+    );
+
+    if (missingProperty) {
+      throw new Error(`Missing required parameter: ${missingProperty}`);
+    }
+
+    return <UserSelfOnboardingHosted onboardingId={params.id}/>
+  },
 };
 
 function resolveRoute(pathPart: string, params: Record<string, any>) {

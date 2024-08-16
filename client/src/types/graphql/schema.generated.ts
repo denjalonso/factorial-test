@@ -20,14 +20,36 @@ export type Scalars = {
   Float: number;
 };
 
+export type CreateHostedWorkerOnboardingInput = {
+  id: Scalars['ID'];
+};
+
 export type CreateUserInput = {
   id: Scalars['ID'];
   name: Scalars['String'];
 };
 
+export enum HostedOnboardingStatus {
+  COMPLETED = 'COMPLETED',
+  INVITED = 'INVITED',
+  STARTED = 'STARTED',
+}
+
+export type HostedUserOnboarding = {
+  __typename?: 'HostedUserOnboarding';
+  id: Scalars['ID'];
+  status: HostedOnboardingStatus;
+  user?: Maybe<User>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  createHostedUserOnboarding: HostedUserOnboarding;
   createUser: User;
+};
+
+export type MutationCreateHostedUserOnboardingArgs = {
+  input: CreateHostedWorkerOnboardingInput;
 };
 
 export type MutationCreateUserArgs = {
@@ -36,8 +58,13 @@ export type MutationCreateUserArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  hostedUserOnboarding?: Maybe<HostedUserOnboarding>;
   user?: Maybe<User>;
   users?: Maybe<Array<User>>;
+};
+
+export type QueryHostedUserOnboardingArgs = {
+  id: Scalars['ID'];
 };
 
 export type QueryUserArgs = {

@@ -2,7 +2,7 @@ import { Field, ID, ObjectType, registerEnumType } from 'type-graphql';
 import {User} from "./User";
 
 @ObjectType()
-export class HostedOnboarding {
+export class HostedUserOnboarding {
 	@Field(type => ID)
 	readonly id!: string;
 

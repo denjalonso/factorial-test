@@ -1,20 +1,40 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT!
-# Generated from the "development" graph variant on 2024-08-16T12:44:02Z
+# Generated from the "development" graph variant on 2024-08-16T18:07:41Z
 """
 Indicates exactly one field must be supplied and this field must not be `null`.
 """
 directive @oneOf on INPUT_OBJECT
+
+input CreateHostedWorkerOnboardingInput {
+  id: ID!
+}
 
 input CreateUserInput {
   id: ID!
   name: String!
 }
 
+enum HostedOnboardingStatus {
+  COMPLETED
+  INVITED
+  STARTED
+}
+
+type HostedUserOnboarding {
+  id: ID!
+  status: HostedOnboardingStatus!
+  user: User
+}
+
 type Mutation {
+  createHostedUserOnboarding(
+    input: CreateHostedWorkerOnboardingInput!
+  ): HostedUserOnboarding!
   createUser(input: CreateUserInput!): User!
 }
 
 type Query {
+  hostedUserOnboarding(id: ID!): HostedUserOnboarding
   user(id: String!): User
   users: [User!]
 }

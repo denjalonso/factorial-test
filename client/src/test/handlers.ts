@@ -2,6 +2,8 @@ import { graphql } from 'msw';
 import { GRAPHQL_ENV_ENDPOINTS } from '../services/profile-backend-service';
 import { UsersListQuery } from '../features/user-list/user-list.generated.ts';
 import { CreateUserMutation } from '../features/create-user/create-user.generated.ts';
+import { UserSelfOnboardingHostedQuery } from '../pages/user-onboarding-hosted/user-onboarding-hosted.generated.ts';
+import { HostedOnboardingStatus } from '../types';
 
 graphql.link(GRAPHQL_ENV_ENDPOINTS.local);
 
@@ -46,4 +48,21 @@ export const handlers = [
       }),
     );
   }),
+  graphql.query<UserSelfOnboardingHostedQuery>(
+    'UserSelfOnboardingHosted',
+    (req, res, ctx) => {
+      return res(
+        ctx.data({
+          hostedUserOnboarding: {
+            id: 'e82f332c-a4e7-4463-b440-59bc91792634',
+            status: HostedOnboardingStatus.STARTED,
+            user: {
+              id: 'e82f332c-a4e7-4463-b440-59bc91792634',
+            },
+            __typename: 'HostedUserOnboarding',
+          },
+        }),
+      );
+    },
+  ),
 ];

@@ -1,4 +1,4 @@
-import {EnumValueObject} from "../../../shared/domain/value-object/EnumValueObject";
+import { EnumValueObject } from '../../../shared/domain/value-object/EnumValueObject';
 
 export enum OnboardingStatus {
 	INVITED = 'INVITED',
@@ -7,9 +7,8 @@ export enum OnboardingStatus {
 	INVALIDATED = 'INVALIDATED'
 }
 
-
 export class HostedOnboardingStatus extends EnumValueObject {
-    constructor(value: OnboardingStatus) {
-        super(value);
-    }
+	constructor(value: OnboardingStatus) {
+		super(value);
+	}
 }

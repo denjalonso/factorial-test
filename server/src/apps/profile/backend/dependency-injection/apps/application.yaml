@@ -14,4 +14,4 @@ services:
 
   HostedOnboardingResolver:
     class: ../../graphql/resolvers/HostedOnboardingResolver
-    arguments: ["@Profile.hostedOnboarding.application.HostedOnboardingCreator", "@Profile.user.application.UserFinder"]
+    arguments: ["@Profile.hostedOnboarding.application.HostedOnboardingCreator", "@Profile.user.application.UserFinder", "@Profile.hostedOnboarding.application.HostedOnboardingFinder"]

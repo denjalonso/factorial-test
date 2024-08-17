@@ -17,3 +17,7 @@ services:
   Profile.hostedOnboarding.application.HostedOnboardingCreator:
     class: ../../../../../contexts/profile/hosted-onboarding/application/HostedOnboardingCreator
     arguments: [ "@Profile.hostedOnboarding.domain.HostedOnboardingRepository" ]
+
+  Profile.hostedOnboarding.application.HostedOnboardingFinder:
+    class: ../../../../../contexts/profile/hosted-onboarding/application/HostedOnboardingFinder
+    arguments: [ "@Profile.hostedOnboarding.domain.HostedOnboardingRepository" ]

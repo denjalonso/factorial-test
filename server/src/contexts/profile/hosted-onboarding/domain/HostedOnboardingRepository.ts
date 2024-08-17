@@ -1,5 +1,5 @@
-import { Nullable } from '../../../shared/domain/Nullable';
 import { HostedOnboarding } from './HostedOnboarding';
+import { Nullable } from '../../../shared/domain/Nullable';
 import { HostedOnboardingId } from '../../shared/domain/hosted-onboarding/HostedOnboardingId';
 
 export interface HostedOnboardingRepository {

@@ -1,10 +1,10 @@
 import { EntitySchema } from 'typeorm';
 import { Nullable } from '../../../../shared/domain/Nullable';
 import { TypeOrmRepository } from '../../../../shared/infrastructure/persistence/typeorm/TypeOrmRepository';
-import { HostedOnboardingRepository } from '../../domain/HostedOnboardingRepository';
-import { HostedOnboardingEntity } from './typeorm/HostedOnboardingEntity';
 import { HostedOnboarding } from '../../domain/HostedOnboarding';
-import {HostedOnboardingId} from "../../../shared/domain/hosted-onboarding/HostedOnboardingId";
+import { HostedOnboardingRepository } from '../../domain/HostedOnboardingRepository';
+import { HostedOnboardingId } from '../../../shared/domain/hosted-onboarding/HostedOnboardingId';
+import { HostedOnboardingEntity } from './typeorm/HostedOnboardingEntity';
 
 export class TypeOrmHostedOnboardingRepository
 	extends TypeOrmRepository<HostedOnboarding>

@@ -1,5 +1,5 @@
 import { Field, ID, InputType } from 'type-graphql';
-import {HostedOnboardingStatus, HostedUserOnboarding} from './HostedUserOnboarding';
+import { HostedOnboardingStatus, HostedUserOnboarding } from './HostedUserOnboarding';
 
 @InputType()
 export class CreateHostedUserOnboardingInput implements Partial<HostedUserOnboarding> {

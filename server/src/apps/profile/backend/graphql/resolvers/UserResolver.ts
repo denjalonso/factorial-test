@@ -26,9 +26,9 @@ export class UserResolver {
 	}
 
 	@Mutation(_returns => User)
-	async createUser(@Arg('input') recipeInput: CreateUserInput): Promise<User> {
-		await this.userCreator.run({ id: recipeInput.id, name: recipeInput.name });
+	async createUser(@Arg('input') userInput: CreateUserInput): Promise<User> {
+		await this.userCreator.run({ id: userInput.id, name: userInput.name });
 
-		return new User(recipeInput.id, recipeInput.name);
+		return new User(userInput.id, userInput.name);
 	}
 }

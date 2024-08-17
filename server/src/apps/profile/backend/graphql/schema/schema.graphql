@@ -3,8 +3,10 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
-input CreateHostedWorkerOnboardingInput {
+input CreateHostedUserOnboardingInput {
   id: ID!
+  status: HostedOnboardingStatus!
+  userId: ID!
 }
 
 input CreateUserInput {
@@ -25,7 +27,7 @@ type HostedUserOnboarding {
 }
 
 type Mutation {
-  createHostedUserOnboarding(input: CreateHostedWorkerOnboardingInput!): HostedUserOnboarding!
+  createHostedUserOnboarding(input: CreateHostedUserOnboardingInput!): HostedUserOnboarding!
   createUser(input: CreateUserInput!): User!
 }
 

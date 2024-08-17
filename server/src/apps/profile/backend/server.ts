@@ -14,7 +14,7 @@ import cors from 'cors';
 import { registerRoutes } from './rest/routes';
 import container from './dependency-injection';
 import { UserResolver } from './graphql/resolvers/UserResolver';
-import { HostedOnboardingResolver } from "./graphql/resolvers/HostedOnboardingResolver";
+import { HostedOnboardingResolver } from './graphql/resolvers/HostedOnboardingResolver';
 import path from 'node:path';
 
 const app = express();

@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType, registerEnumType } from 'type-graphql';
-import {User} from "./User";
+import { User } from './User';
 
 @ObjectType()
 export class HostedUserOnboarding {
@@ -12,16 +12,17 @@ export class HostedUserOnboarding {
 	@Field(type => User, { nullable: true })
 	user?: User;
 
-	constructor(id: string, status: HostedOnboardingStatus) {
+	constructor(id: string, status: HostedOnboardingStatus, user?: User) {
 		this.id = id;
 		this.status = status;
+		this.user = user;
 	}
 }
 
 export enum HostedOnboardingStatus {
-	COMPLETED,
-	INVITED,
-	STARTED
+	COMPLETED = 'COMPLETED',
+	INVITED = 'INVITED',
+	STARTED = 'STARTED'
 }
 
 registerEnumType(HostedOnboardingStatus, {

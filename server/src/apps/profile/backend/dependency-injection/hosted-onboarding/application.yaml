@@ -9,3 +9,11 @@ services:
       class: ../../../../../contexts/shared/infrastructure/persistence/typeorm/TypeOrmClientFactory
       method: 'createClient'
     arguments: [ 'profile', '@Profile.TypeOrmConfig' ]
+
+  Profile.hostedOnboarding.domain.HostedOnboardingRepository:
+    class: ../../../../../contexts/profile/hosted-onboarding/infrastructure/persistence/TypeOrmHostedOnboardingRepository
+    arguments: [ "@Profile.ConnectionManager" ]
+
+  Profile.hostedOnboarding.application.HostedOnboardingCreator:
+    class: ../../../../../contexts/profile/hosted-onboarding/application/HostedOnboardingCreator
+    arguments: [ "@Profile.hostedOnboarding.domain.HostedOnboardingRepository" ]

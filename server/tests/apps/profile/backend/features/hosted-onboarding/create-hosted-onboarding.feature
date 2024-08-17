@@ -8,7 +8,7 @@ Feature: Create new hosted onboarding
     """
     {
         "query": "mutation CreateHostedUserOnboarding($input: CreateHostedWorkerOnboardingInput!) { createHostedUserOnboarding(input: $input) { id status } }",
-        "variables": { "input": { "id": "e3e0a2e4-89c6-4ebd-93d0-ef68a9a1c0f3" } }
+        "variables": { "input": { "id": "e3e0a2e4-89c6-4ebd-93d0-ef68a9a1c0f3", "userId": "6d1a5a84-7d5b-4a7f-8bcb-d7aeb4ccde18" } }
     }
     """
     Then the response status code should be 200

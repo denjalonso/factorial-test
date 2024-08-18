@@ -7,6 +7,11 @@ import { UserId } from '../../../shared/domain/user/UserId';
 import { UserEntity } from './typeorm/UserEntity';
 
 export class TypeOrmUserRepository extends TypeOrmRepository<User> implements UserRepository {
+	public async update(user: User): Promise<void> {
+		const repository = await this.repository();
+
+		await repository.update({ id: user.id }, user);
+	}
 	public save(user: User): Promise<void> {
 		return this.persist(user);
 	}

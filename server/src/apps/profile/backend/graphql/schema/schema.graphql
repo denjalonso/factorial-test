@@ -30,6 +30,7 @@ type Mutation {
   createHostedUserOnboarding(input: CreateHostedUserOnboardingInput!): HostedUserOnboarding!
   createUser(input: CreateUserInput!): User!
   updateHostedUserOnboardingStatus(input: UpdateHostedUserOnboardingInput!): HostedUserOnboarding!
+  updateUser(input: UpdateUserInput!): User!
 }
 
 type Query {
@@ -43,7 +44,20 @@ input UpdateHostedUserOnboardingInput {
   status: HostedOnboardingStatus!
 }
 
+input UpdateUserInput {
+  email: String
+  gender: String
+  id: ID!
+  name: String
+  phone: String
+  pronouns: String
+}
+
 type User {
+  email: String
+  gender: String
   id: ID!
   name: String!
+  phone: String
+  pronouns: String
 }

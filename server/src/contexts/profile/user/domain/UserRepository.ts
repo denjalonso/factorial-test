@@ -6,4 +6,5 @@ export interface UserRepository {
 	save(user: User): Promise<void>;
 	find(id: UserId): Promise<Nullable<User>>;
 	findAll(): Promise<User[]>;
+	update(user: User): Promise<void>;
 }

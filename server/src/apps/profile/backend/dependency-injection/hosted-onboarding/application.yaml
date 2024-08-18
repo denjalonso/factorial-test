@@ -21,3 +21,7 @@ services:
   Profile.hostedOnboarding.application.HostedOnboardingFinder:
     class: ../../../../../contexts/profile/hosted-onboarding/application/HostedOnboardingFinder
     arguments: [ "@Profile.hostedOnboarding.domain.HostedOnboardingRepository" ]
+
+  Profile.hostedOnboarding.application.HostedOnboardingUpdater:
+    class: ../../../../../contexts/profile/hosted-onboarding/application/HostedOnboardingUpdater
+    arguments: [ "@Profile.hostedOnboarding.domain.HostedOnboardingRepository" ]

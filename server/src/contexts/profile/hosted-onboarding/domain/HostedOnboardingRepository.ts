@@ -6,4 +6,5 @@ export interface HostedOnboardingRepository {
 	save(hostedOnboarding: HostedOnboarding): Promise<void>;
 	find(id: HostedOnboardingId): Promise<Nullable<HostedOnboarding>>;
 	findAll(): Promise<HostedOnboarding[]>;
+	update(hostedOnboarding: HostedOnboarding): Promise<void>;
 }

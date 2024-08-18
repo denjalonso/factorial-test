@@ -29,12 +29,18 @@ type HostedUserOnboarding {
 type Mutation {
   createHostedUserOnboarding(input: CreateHostedUserOnboardingInput!): HostedUserOnboarding!
   createUser(input: CreateUserInput!): User!
+  updateHostedUserOnboardingStatus(input: UpdateHostedUserOnboardingInput!): HostedUserOnboarding!
 }
 
 type Query {
   hostedUserOnboarding(id: ID!): HostedUserOnboarding
   user(id: String!): User
   users: [User!]
+}
+
+input UpdateHostedUserOnboardingInput {
+  id: ID!
+  status: HostedOnboardingStatus!
 }
 
 type User {

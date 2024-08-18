@@ -10,6 +10,12 @@ export class TypeOrmHostedOnboardingRepository
 	extends TypeOrmRepository<HostedOnboarding>
 	implements HostedOnboardingRepository
 {
+	public async update(hostedOnboarding: HostedOnboarding): Promise<void> {
+		const repository = await this.repository();
+
+		await repository.update({ id: hostedOnboarding.id }, hostedOnboarding);
+	}
+
 	public save(hostedOnboarding: HostedOnboarding): Promise<void> {
 		return this.persist(hostedOnboarding);
 	}

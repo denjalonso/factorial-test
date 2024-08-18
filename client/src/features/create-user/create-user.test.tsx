@@ -13,7 +13,7 @@ describe('CreateUserForm', () => {
     };
   };
 
-  test('renders worker name input and save button', () => {
+  test('renders user name input and save button', () => {
     const { createButton, nameInput } = setup();
     expect(createButton).toBeInTheDocument();
     expect(nameInput).toBeInTheDocument();

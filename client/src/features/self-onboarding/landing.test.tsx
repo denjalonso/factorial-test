@@ -9,10 +9,11 @@ describe('UserOnboardingLanding', () => {
     status: HostedOnboardingStatus.INVITED,
     user: {
       id: 'user-id',
+        name: 'Parrot',
     },
   };
 
-  const getInProgress = () => screen.queryAllByText(/welcome.*/i)[0];
+  const getInProgress = () => screen.queryAllByText(/payroll.*/i)[0];
   const getCompleted = () => screen.queryAllByText(/complete.*/i)[0];
   const getInvalidOrExpired = () =>
     screen.queryAllByText(/invalid.*/i)[0] ??

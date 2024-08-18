@@ -2,9 +2,9 @@
 // organize-imports-ignore
 import * as Types from '../../types/graphql/schema.generated';
 
-import { UserFormFragment } from '../user-form/user-form-fields.generated';
+import { UserFormFragment } from '../user-form/user-name-form-fields.generated';
 import { DocumentNode } from 'graphql';
-import { UserFormFragmentDoc } from '../user-form/user-form-fields.generated';
+import { UserFormFragmentDoc } from '../user-form/user-name-form-fields.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export const namedOperations = {

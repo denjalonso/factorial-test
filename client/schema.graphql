@@ -1,12 +1,14 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT!
-# Generated from the "development" graph variant on 2024-08-16T18:07:41Z
+# Generated from the "development" graph variant on 2024-08-18T22:56:25Z
 """
 Indicates exactly one field must be supplied and this field must not be `null`.
 """
 directive @oneOf on INPUT_OBJECT
 
-input CreateHostedWorkerOnboardingInput {
+input CreateHostedUserOnboardingInput {
   id: ID!
+  status: HostedOnboardingStatus!
+  userId: ID!
 }
 
 input CreateUserInput {
@@ -28,9 +30,13 @@ type HostedUserOnboarding {
 
 type Mutation {
   createHostedUserOnboarding(
-    input: CreateHostedWorkerOnboardingInput!
+    input: CreateHostedUserOnboardingInput!
   ): HostedUserOnboarding!
   createUser(input: CreateUserInput!): User!
+  updateHostedUserOnboardingStatus(
+    input: UpdateHostedUserOnboardingInput!
+  ): HostedUserOnboarding!
+  updateUser(input: UpdateUserInput!): User!
 }
 
 type Query {
@@ -39,7 +45,25 @@ type Query {
   users: [User!]
 }
 
+input UpdateHostedUserOnboardingInput {
+  id: ID!
+  status: HostedOnboardingStatus!
+}
+
+input UpdateUserInput {
+  email: String
+  gender: String
+  id: ID!
+  name: String
+  phone: String
+  pronouns: String
+}
+
 type User {
+  email: String
+  gender: String
   id: ID!
   name: String!
+  phone: String
+  pronouns: String
 }

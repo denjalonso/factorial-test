@@ -32,7 +32,7 @@ const defaultMocks = {
   DateTime: () => faker.date.recent(365).toISOString(),
   Money: () => faker.finance.amount(1, 100),
   Decimal: () => faker.finance.amount(1, 100),
-  ID: () => faker.datatype.uuid(),
+  ID: () => faker.string.uuid(),
 };
 
 const typenameResolveType = (o: Record<string, any>) => {

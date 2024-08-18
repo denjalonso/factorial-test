@@ -3,8 +3,18 @@
 import * as Types from '../../types/graphql/schema.generated';
 
 import { UserOnboardingLandingHostedFragment } from '../../features/self-onboarding/landing.generated';
+import {
+  UserInProgressOnboardingHostedFragment,
+  UserInProgressOnboarding_WorkerFragment,
+} from '../../features/self-onboarding/in-progress-onboarding.generated';
+import { UserOnboardingStepFlowModalFragment } from '../../features/self-onboarding/step-flow.generated';
 import { DocumentNode } from 'graphql';
 import { UserOnboardingLandingHostedFragmentDoc } from '../../features/self-onboarding/landing.generated';
+import {
+  UserInProgressOnboardingHostedFragmentDoc,
+  UserInProgressOnboarding_WorkerFragmentDoc,
+} from '../../features/self-onboarding/in-progress-onboarding.generated';
+import { UserOnboardingStepFlowModalFragmentDoc } from '../../features/self-onboarding/step-flow.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export const namedOperations = {
@@ -88,6 +98,9 @@ export const UserSelfOnboardingHostedDocument = {
       },
     },
     ...UserOnboardingLandingHostedFragmentDoc.definitions,
+    ...UserInProgressOnboardingHostedFragmentDoc.definitions,
+    ...UserInProgressOnboarding_WorkerFragmentDoc.definitions,
+    ...UserOnboardingStepFlowModalFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode;
 

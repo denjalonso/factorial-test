@@ -2,7 +2,17 @@
 // organize-imports-ignore
 import * as Types from '../../types/graphql/schema.generated';
 
+import {
+  UserInProgressOnboardingHostedFragment,
+  UserInProgressOnboarding_WorkerFragment,
+} from './in-progress-onboarding.generated';
+import { UserOnboardingStepFlowModalFragment } from './step-flow.generated';
 import { DocumentNode } from 'graphql';
+import {
+  UserInProgressOnboardingHostedFragmentDoc,
+  UserInProgressOnboarding_WorkerFragmentDoc,
+} from './in-progress-onboarding.generated';
+import { UserOnboardingStepFlowModalFragmentDoc } from './step-flow.generated';
 export const namedOperations = {
   Fragment: {
     UserOnboardingLandingHosted: 'UserOnboardingLandingHosted',
@@ -13,7 +23,7 @@ export type UserOnboardingLandingHostedFragment = {
   id: string;
   status: Types.HostedOnboardingStatus;
   user?: { __typename?: 'User'; id: string } | null;
-};
+} & UserInProgressOnboardingHostedFragment;
 
 export const UserOnboardingLandingHostedFragmentDoc = {
   kind: 'Document',
@@ -30,6 +40,10 @@ export const UserOnboardingLandingHostedFragmentDoc = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'status' } },
+          {
+            kind: 'FragmentSpread',
+            name: { kind: 'Name', value: 'UserInProgressOnboardingHosted' },
+          },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'user' },

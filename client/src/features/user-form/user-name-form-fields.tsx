@@ -10,7 +10,7 @@ gql`
   }
 `;
 
-function UserFormFields() {
+function UserNameFormFields() {
   return (
     <Grid
       templateColumns={{ sm: 'repeat(2, minmax(0, 1fr))', base: '1fr' }}
@@ -30,4 +30,4 @@ function UserFormFields() {
   );
 }
 
-export { UserFormFields };
+export { UserNameFormFields };

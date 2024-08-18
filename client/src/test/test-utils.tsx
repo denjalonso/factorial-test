@@ -2,7 +2,12 @@ import React, { ReactElement } from 'react';
 // See https://testing-library.com/docs/react-testing-library/setup/#custom-render
 import { ApolloProvider, InMemoryCache } from '@apollo/client';
 import { ChakraProvider, theme } from '@chakra-ui/react';
-import { render, RenderOptions } from '@testing-library/react';
+import {
+  render,
+  RenderOptions,
+  waitForElementToBeRemoved,
+  screen,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MockedResponse } from '@apollo/client/testing';
 import {
@@ -50,6 +55,15 @@ const customRender = (
   options?: Omit<RenderOptions, 'wrapper'>,
 ) => render(ui, { wrapper: AllTheProviders, ...options });
 
+const waitForLoadingToFinish = () =>
+  waitForElementToBeRemoved(
+    () => [
+      ...screen.queryAllByLabelText(/loading/i),
+      ...screen.queryAllByText(/loading/i),
+    ],
+    { timeout: 4000 },
+  );
+
 export * from '@testing-library/react';
 export { userEvent };
-export { customRender as render };
+export { customRender as render, waitForLoadingToFinish };

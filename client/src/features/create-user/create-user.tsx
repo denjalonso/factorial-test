@@ -7,7 +7,7 @@ import { ProfileFormLayoutComponent } from '../../components/profile-form-layout
 import { Form } from '../../components/form/form.tsx';
 import { CreateUserInput } from '../../types';
 import { useCreateUserMutation } from './create-user.generated.ts';
-import { UserFormFields } from '../user-form/user-form-fields.tsx';
+import { UserNameFormFields } from '../user-form/user-name-form-fields.tsx';
 import { namedOperations } from '../user-list/user-list.generated.ts';
 
 gql`
@@ -18,7 +18,7 @@ gql`
   }
 `;
 
-const FORM_NAME_ID = 'create-worker';
+const FORM_NAME_ID = 'create-user';
 
 export type CreateUserFormProps = {
   onCreated?: () => void;
@@ -86,7 +86,7 @@ export default function CreateUserForm({
           name={FORM_NAME_ID}
           useFormMethods={methods}
           onSubmit={onSubmit}>
-          <UserFormFields />
+          <UserNameFormFields />
         </Form>
       </Box>
     </ProfileFormLayout>

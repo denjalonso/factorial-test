@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { Form } from '../../components/form/';
 import { render, screen } from '../../test/test-utils';
-import { UserFormFields } from './user-form-fields';
+import { UserNameFormFields } from './user-name-form-fields.tsx';
 
 describe('UserFormFields', () => {
   const setup = () => {
@@ -12,7 +12,7 @@ describe('UserFormFields', () => {
     );
     render(
       <TestParentComponent>
-        <UserFormFields />,
+        <UserNameFormFields />,
       </TestParentComponent>,
     );
 

@@ -20,8 +20,10 @@ export type Scalars = {
   Float: number;
 };
 
-export type CreateHostedWorkerOnboardingInput = {
+export type CreateHostedUserOnboardingInput = {
   id: Scalars['ID'];
+  status: HostedOnboardingStatus;
+  userId: Scalars['ID'];
 };
 
 export type CreateUserInput = {
@@ -46,14 +48,24 @@ export type Mutation = {
   __typename?: 'Mutation';
   createHostedUserOnboarding: HostedUserOnboarding;
   createUser: User;
+  updateHostedUserOnboardingStatus: HostedUserOnboarding;
+  updateUser: User;
 };
 
 export type MutationCreateHostedUserOnboardingArgs = {
-  input: CreateHostedWorkerOnboardingInput;
+  input: CreateHostedUserOnboardingInput;
 };
 
 export type MutationCreateUserArgs = {
   input: CreateUserInput;
+};
+
+export type MutationUpdateHostedUserOnboardingStatusArgs = {
+  input: UpdateHostedUserOnboardingInput;
+};
+
+export type MutationUpdateUserArgs = {
+  input: UpdateUserInput;
 };
 
 export type Query = {
@@ -71,8 +83,26 @@ export type QueryUserArgs = {
   id: Scalars['String'];
 };
 
+export type UpdateHostedUserOnboardingInput = {
+  id: Scalars['ID'];
+  status: HostedOnboardingStatus;
+};
+
+export type UpdateUserInput = {
+  email?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<Scalars['String']>;
+  id: Scalars['ID'];
+  name?: InputMaybe<Scalars['String']>;
+  phone?: InputMaybe<Scalars['String']>;
+  pronouns?: InputMaybe<Scalars['String']>;
+};
+
 export type User = {
   __typename?: 'User';
+  email?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   name: Scalars['String'];
+  phone?: Maybe<Scalars['String']>;
+  pronouns?: Maybe<Scalars['String']>;
 };

@@ -30,7 +30,7 @@ describe('resolveRoute', () => {
     render(result);
 
     expect(
-      await screen.findByText(/user onboarding hosted/i),
+      await screen.findByText(/payroll setup/i),
     ).toBeInTheDocument();
   });
 });

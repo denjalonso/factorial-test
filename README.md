@@ -44,7 +44,12 @@ integration with different services would be an important factor to consider.
       * Total users onboarded per day
       * [Users onboarded time series](https://horizon-ui.com/documentation/docs/data-display/charts): I was concerned here because IMHO a timeline is not the best way to show this data. I used a line chart to show the data. 
 
-#### Mockups and wireframes
+#### Mockups
+
+<img width="1727" alt="Screenshot 2024-08-19 at 14 06 03" src="https://github.com/user-attachments/assets/a040ffd4-cb2d-49ae-a62d-521e78c21f04">
+<img width="1723" alt="Screenshot 2024-08-19 at 14 06 14" src="https://github.com/user-attachments/assets/87c5f538-072c-467a-9bd6-35851d27c292">
+<img width="1728" alt="Screenshot 2024-08-19 at 14 06 26" src="https://github.com/user-attachments/assets/ca505879-e116-4be0-8089-3b5ca56a4490">
+
 
 ### Architecture overview
 From an architectural and macro design point of view there does not seem to be any major challenge. I have opted
@@ -90,13 +95,9 @@ type safe way to interact with the database.
 ### Uncertainty first
 
 1. Create Vite + React + Typescript project ✅
-2. Create Node.js + Express + Typescript project + Prisma + SQLite
-3. Managing forms in a native way
-3. Chakra ui vs TailwindCSS???
+2. Create Node.js + Express + Typescript project + TyOrm + Postgres ✅
 
 ### API first approach
-
-Enlace a los diferentes commits con el contrato/schema gql.
 
 ### Improving DX
 

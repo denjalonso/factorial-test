@@ -34,9 +34,10 @@ export const HostedOnboardingEntity = new EntitySchema<HostedOnboarding>({
 		user: {
 			target: 'User',
 			type: 'one-to-one',
+			nullable: true,
 			inverseSide: 'hostedOnboarding',
 			joinColumn: true,
-			eager: true
+			eager: true,
 		}
 	}
 });

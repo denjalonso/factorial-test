@@ -22,6 +22,7 @@ gql`
   query PersonalInformationForm($userId: String!) {
     user(id: $userId) {
       id
+      ...UserForm
       ...PersonalInformationFormFields
     }
   }

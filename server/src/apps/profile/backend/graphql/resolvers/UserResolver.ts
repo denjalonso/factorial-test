@@ -8,6 +8,7 @@ import { UpdateUserInput } from '../schema/UpdateUserInput';
 import { UserUpdater } from '../../../../../contexts/profile/user/application/UserUpdater';
 import { HostedOnboardingStatus, HostedUserOnboarding } from '../schema/HostedUserOnboarding';
 import { HostedOnboardingFinder } from '../../../../../contexts/profile/hosted-onboarding/application/HostedOnboardingFinder';
+// import {OnboardingStatus} from "../../../../../contexts/profile/hosted-onboarding/domain/OnboardingStatus";
 
 @Resolver(of => User)
 export class UserResolver implements ResolverInterface<User> {
@@ -77,7 +78,17 @@ export class UserResolver implements ResolverInterface<User> {
 			throw new Error('User not found');
 		}
 
+
 		await this.userUpdater.run({ ...userInput });
+		// await this.userUpdater.run({
+		// 	...userInput,
+		// 	...(user.hostedOnboarding ? {
+		// 		hostedOnboarding: {
+		// 			id: user.hostedOnboarding.id,
+		// 			status: OnboardingStatus[user.hostedOnboarding.status as keyof typeof OnboardingStatus]
+		// 		}
+		// 	} : {})
+		// });
 
 		return new User({
 			id: user.id,
@@ -85,7 +96,13 @@ export class UserResolver implements ResolverInterface<User> {
 			email: userInput.email,
 			gender: userInput.gender,
 			pronouns: userInput.pronouns,
-			phone: userInput.phone
+			phone: userInput.phone,
+			// ...(user.hostedOnboarding ? {
+			// 	hostedOnboarding: new HostedUserOnboarding(
+			// 		user.hostedOnboarding.id,
+			// 		HostedOnboardingStatus[user.hostedOnboarding.status as keyof typeof HostedOnboardingStatus],
+			// 	)
+			// } : {})
 		});
 	}
 }

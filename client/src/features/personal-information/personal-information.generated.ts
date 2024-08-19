@@ -2,8 +2,10 @@
 // organize-imports-ignore
 import * as Types from '../../types/graphql/schema.generated';
 
+import { UserFormFragment } from '../user-form/user-name-form-fields.generated';
 import { PersonalInformationFormFieldsFragment } from './personal-information-form-fields.generated';
 import { DocumentNode } from 'graphql';
+import { UserFormFragmentDoc } from '../user-form/user-name-form-fields.generated';
 import { PersonalInformationFormFieldsFragmentDoc } from './personal-information-form-fields.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
@@ -25,10 +27,8 @@ export type PersonalInformationFormQueryVariables = Types.Exact<{
 export type PersonalInformationFormQuery = {
   __typename?: 'Query';
   user?:
-    | ({
-        __typename?: 'User';
-        id: string;
-      } & PersonalInformationFormFieldsFragment)
+    | ({ __typename?: 'User'; id: string } & UserFormFragment &
+        PersonalInformationFormFieldsFragment)
     | null;
 };
 
@@ -114,6 +114,10 @@ export const PersonalInformationFormDocument = {
                 { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 {
                   kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UserForm' },
+                },
+                {
+                  kind: 'FragmentSpread',
                   name: {
                     kind: 'Name',
                     value: 'PersonalInformationFormFields',
@@ -125,6 +129,7 @@ export const PersonalInformationFormDocument = {
         ],
       },
     },
+    ...UserFormFragmentDoc.definitions,
     ...PersonalInformationFormFieldsFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode;

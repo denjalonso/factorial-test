@@ -10,7 +10,9 @@ export class TypeOrmUserRepository extends TypeOrmRepository<User> implements Us
 	public async update(user: User): Promise<void> {
 		const repository = await this.repository();
 
-		await repository.update({ id: user.id }, user);
+		const { hostedOnboarding, ...rest } = user
+
+		await repository.update({ id: user.id }, rest);
 	}
 	public save(user: User): Promise<void> {
 		return this.persist(user);
@@ -19,7 +21,11 @@ export class TypeOrmUserRepository extends TypeOrmRepository<User> implements Us
 	public async find(id: UserId): Promise<Nullable<User>> {
 		const repository = await this.repository();
 
-		const user = await repository.findOne({ id });
+		const user = await repository.findOne({ id },
+			{
+				relations: ['hostedOnboarding']
+			}
+		);
 
 		return user;
 	}

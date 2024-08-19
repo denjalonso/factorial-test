@@ -22,6 +22,7 @@ import {
 import { UnknownError } from '../../components/error';
 import { Loading } from '../../components/loading';
 import { UserOnboardingStatusBadge } from './user-onboarding-status-badge.tsx';
+import CopyValue from '../../components/copy-value.tsx';
 
 gql`
   fragment UserInfoRow on User {
@@ -45,11 +46,17 @@ type UserRowCellsProps = {
 };
 
 function UserRowCells({ user }: UserRowCellsProps) {
+  const userOnboardingLink = `${window.location.origin}/hosted/user-onboarding?id=${user.hostedOnboarding?.id}`;
   return (
     <>
       <Td>{user.name}</Td>
       <Td whiteSpace="nowrap" w={24}>
         <UserOnboardingStatusBadge status={user?.hostedOnboarding?.status} />
+      </Td>
+      <Td whiteSpace="nowrap" w={24}>
+        <CopyValue value={userOnboardingLink}>
+          <Box>{user.name}'s link</Box>
+        </CopyValue>
       </Td>
     </>
   );
@@ -77,6 +84,7 @@ function UserList({ users }: UserListProps) {
               <Th whiteSpace="nowrap">
                 <Text fontSize="xs">Onboarding status</Text>
               </Th>
+              <Th />
             </Tr>
           </Thead>
           <Tbody>

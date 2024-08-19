@@ -1,7 +1,7 @@
-import {render, screen} from '../../test/test-utils';
+import { render, screen } from '../../test/test-utils';
 import UserList from './user-list';
-import {UserInfoRowFragment} from './user-list.generated.ts';
-import {HostedOnboardingStatus} from "../../types";
+import { UserInfoRowFragment } from './user-list.generated.ts';
+import { HostedOnboardingStatus } from '../../types';
 
 describe('UserList', () => {
   const defaultWorkers: UserInfoRowFragment[] = [

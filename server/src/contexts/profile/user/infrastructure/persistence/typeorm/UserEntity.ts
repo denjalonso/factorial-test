@@ -47,7 +47,8 @@ export const UserEntity = new EntitySchema<User>({
 		hostedOnboarding: {
 			target: 'HostedOnboarding',
 			type: 'one-to-one',
-			inverseSide: 'user'
+			inverseSide: 'user',
+			cascade: true
 		}
 	}
 });

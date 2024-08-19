@@ -9,7 +9,7 @@ describe('UserOnboardingLanding', () => {
     status: HostedOnboardingStatus.INVITED,
     user: {
       id: 'user-id',
-        name: 'Parrot',
+      name: 'Parrot',
     },
   };
 

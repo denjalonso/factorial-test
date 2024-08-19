@@ -17,6 +17,11 @@ export type UserInfoRowFragment = {
   __typename?: 'User';
   id: string;
   name: string;
+  hostedOnboarding?: {
+    __typename?: 'HostedUserOnboarding';
+    id: string;
+    status: Types.HostedOnboardingStatus;
+  } | null;
 };
 
 export type UsersListQueryVariables = Types.Exact<{ [key: string]: never }>;
@@ -41,6 +46,17 @@ export const UserInfoRowFragmentDoc = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'hostedOnboarding' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'status' } },
+              ],
+            },
+          },
         ],
       },
     },

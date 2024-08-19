@@ -29,8 +29,6 @@ describe('resolveRoute', () => {
     const result = resolveRoute(validUserOnboardingUrlPath, params);
     render(result);
 
-    expect(
-      await screen.findByText(/payroll setup/i),
-    ).toBeInTheDocument();
+    expect(await screen.findByText(/payroll setup/i)).toBeInTheDocument();
   });
 });

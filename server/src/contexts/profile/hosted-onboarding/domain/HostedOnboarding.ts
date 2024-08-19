@@ -7,9 +7,9 @@ import { User } from '../../user/domain/User';
 export class HostedOnboarding extends AggregateRoot {
 	readonly id: HostedOnboardingId;
 	readonly status: OnboardingStatus;
-	readonly user?: User;
+	readonly user?: User | null;
 
-	constructor(id: Uuid, status: OnboardingStatus, user?: User) {
+	constructor(id: Uuid, status: OnboardingStatus, user?: User | null) {
 		super();
 		this.id = id;
 		this.status = status;
@@ -19,12 +19,12 @@ export class HostedOnboarding extends AggregateRoot {
 	static fromPrimitives(plainData: {
 		id: string;
 		status: OnboardingStatus;
-		user: { id: string; name: string };
+		user?: { id: string; name: string };
 	}): HostedOnboarding {
 		return new HostedOnboarding(
 			new HostedOnboardingId(plainData.id),
 			plainData.status,
-			User.fromPrimitives(plainData.user)
+			plainData.user ? User.fromPrimitives(plainData.user) : null
 		);
 	}
 

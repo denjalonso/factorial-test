@@ -56,6 +56,7 @@ input UpdateUserInput {
 type User {
   email: String
   gender: String
+  hostedOnboarding: HostedUserOnboarding
   id: ID!
   name: String!
   phone: String

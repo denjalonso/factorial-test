@@ -21,11 +21,16 @@ import {
 } from './user-list.generated.ts';
 import { UnknownError } from '../../components/error';
 import { Loading } from '../../components/loading';
+import { UserOnboardingStatusBadge } from './user-onboarding-status-badge.tsx';
 
 gql`
   fragment UserInfoRow on User {
     id
     name
+    hostedOnboarding {
+      id
+      status
+    }
   }
 
   query UsersList {
@@ -43,6 +48,9 @@ function UserRowCells({ user }: UserRowCellsProps) {
   return (
     <>
       <Td>{user.name}</Td>
+      <Td whiteSpace="nowrap" w={24}>
+        <UserOnboardingStatusBadge status={user?.hostedOnboarding?.status} />
+      </Td>
     </>
   );
 }
@@ -65,6 +73,9 @@ function UserList({ users }: UserListProps) {
             <Tr>
               <Th whiteSpace="nowrap">
                 <Text fontSize="xs">Name</Text>
+              </Th>
+              <Th whiteSpace="nowrap">
+                <Text fontSize="xs">Onboarding status</Text>
               </Th>
             </Tr>
           </Thead>

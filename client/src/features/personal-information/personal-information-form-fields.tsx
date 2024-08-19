@@ -22,7 +22,7 @@ type PersonalInformationFormFieldsProps = {
 } & GridProps;
 
 const PersonalInformationFormFields = ({
-    // personalInformation,
+  // personalInformation,
   includeEmail = true,
   includePhoneNumber = true,
   includePronouns = true,

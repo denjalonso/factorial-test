@@ -5,8 +5,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { ProfileFormLayout } from '../../components/profile-form-layout';
 import { ProfileFormLayoutComponent } from '../../components/profile-form-layout/profile-form-layout';
 import { Form } from '../../components/form/form.tsx';
-import { CreateUserInput } from '../../types';
-import { useCreateUserMutation } from './create-user.generated.ts';
+import { CreateUserInput, HostedOnboardingStatus } from '../../types';
+import {
+  useCreateHostedUserOnboardingMutation,
+  useCreateUserMutation,
+} from './create-user.generated.ts';
 import { UserNameFormFields } from '../user-form/user-name-form-fields.tsx';
 import { namedOperations } from '../user-list/user-list.generated.ts';
 
@@ -14,6 +17,19 @@ gql`
   mutation CreateUser($input: CreateUserInput!) {
     createUser(input: $input) {
       ...UserForm
+    }
+  }
+
+  mutation CreateHostedUserOnboarding(
+    $input: CreateHostedUserOnboardingInput!
+  ) {
+    createHostedUserOnboarding(input: $input) {
+      id
+      status
+      user {
+        id
+        name
+      }
     }
   }
 `;
@@ -33,6 +49,8 @@ export default function CreateUserForm({
 }: CreateUserFormProps) {
   const methods = useForm<CreateUserInput>({ defaultValues: { name: '' } });
   const [createUserMutation] = useCreateUserMutation();
+  const [createHostedUserOnboardingMutation] =
+    useCreateHostedUserOnboardingMutation();
   const apolloClient = useApolloClient();
 
   const onSubmit = (data: CreateUserInput) => {
@@ -44,15 +62,30 @@ export default function CreateUserForm({
           name,
         },
       },
-      onCompleted: () => {
-        onCreated?.();
-      },
-      refetchQueries: () => {
-        const queries = [namedOperations.Query.UsersList];
-        const activeQueries = Array.from(
-          apolloClient.getObservableQueries('active').values(),
-        ).map((obsQuery) => obsQuery.queryName);
-        return queries.filter((queryName) => activeQueries.includes(queryName));
+      awaitRefetchQueries: true,
+      onCompleted: (data) => {
+        return createHostedUserOnboardingMutation({
+          variables: {
+            input: {
+              id: uuidv4(),
+              status: HostedOnboardingStatus.INVITED,
+              userId: data.createUser.id,
+            },
+          },
+          onCompleted: () => {
+            onCreated?.();
+          },
+          awaitRefetchQueries: true,
+          refetchQueries: () => {
+            const queries = [namedOperations.Query.UsersList];
+            const activeQueries = Array.from(
+              apolloClient.getObservableQueries('active').values(),
+            ).map((obsQuery) => obsQuery.queryName);
+            return queries.filter((queryName) =>
+              activeQueries.includes(queryName),
+            );
+          },
+        });
       },
     });
   };

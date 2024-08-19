@@ -34,6 +34,7 @@ export const HostedOnboardingEntity = new EntitySchema<HostedOnboarding>({
 		user: {
 			target: 'User',
 			type: 'one-to-one',
+			inverseSide: 'hostedOnboarding',
 			joinColumn: true,
 			eager: true
 		}

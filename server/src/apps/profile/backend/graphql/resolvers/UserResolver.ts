@@ -1,4 +1,4 @@
-import { Arg, Mutation, Query, Resolver } from 'type-graphql';
+import { Arg, FieldResolver, Mutation, Query, Resolver, ResolverInterface, Root } from 'type-graphql';
 import { User } from '../schema/User';
 import { CreateUserInput } from '../schema/UserInput';
 import { UserFinder } from '../../../../../contexts/profile/user/application/UserFinder';
@@ -6,14 +6,17 @@ import { UserCreator } from '../../../../../contexts/profile/user/application/Us
 import { UsersFinder } from '../../../../../contexts/profile/user/application/UsersFinder';
 import { UpdateUserInput } from '../schema/UpdateUserInput';
 import { UserUpdater } from '../../../../../contexts/profile/user/application/UserUpdater';
+import { HostedOnboardingStatus, HostedUserOnboarding } from '../schema/HostedUserOnboarding';
+import { HostedOnboardingFinder } from '../../../../../contexts/profile/hosted-onboarding/application/HostedOnboardingFinder';
 
 @Resolver(of => User)
-export class UserResolver {
+export class UserResolver implements ResolverInterface<User> {
 	constructor(
 		private readonly userCreator: UserCreator,
 		private readonly userFinder: UserFinder,
 		private readonly usersFinder: UsersFinder,
-		private readonly userUpdater: UserUpdater
+		private readonly userUpdater: UserUpdater,
+		private readonly hostedOnboardingFinder: HostedOnboardingFinder
 	) {}
 
 	@Query(_returns => User, { nullable: true })
@@ -25,7 +28,39 @@ export class UserResolver {
 
 	@Query(_returns => [User], { nullable: true })
 	async users(): Promise<User[]> {
-		return await this.usersFinder.run();
+		const users = await this.usersFinder.run();
+		return users.map(user => new User({
+			id: user.id,
+			name: user.name,
+			email: user.email,
+			gender: user.gender,
+			pronouns: user.pronouns,
+			phone: user.phone,
+			...(user.hostedOnboarding ? {
+				hostedOnboarding: new HostedUserOnboarding(
+					user.hostedOnboarding.id,
+					HostedOnboardingStatus[user.hostedOnboarding.status as keyof typeof HostedOnboardingStatus],
+				)
+			} : {})
+		}));
+	}
+
+	@FieldResolver()
+	async hostedOnboarding(@Root() user: User): Promise<HostedUserOnboarding> {
+		if (!user.hostedOnboarding?.id) {
+			throw new Error('Hosted onboarding not found');
+		}
+
+		const hostedOnboarding = await this.hostedOnboardingFinder.run({ id: user.hostedOnboarding?.id });
+
+		if (!hostedOnboarding) {
+			throw new Error('Hosted onboarding not found');
+		}
+
+		const status: HostedOnboardingStatus =
+			HostedOnboardingStatus[hostedOnboarding.status as keyof typeof HostedOnboardingStatus];
+
+		return new HostedUserOnboarding(hostedOnboarding.id, status, user);
 	}
 
 	@Mutation(_returns => User)

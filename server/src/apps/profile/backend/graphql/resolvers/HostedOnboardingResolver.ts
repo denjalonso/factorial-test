@@ -39,7 +39,20 @@ export class HostedOnboardingResolver implements ResolverInterface<HostedUserOnb
 			throw new Error('User not found');
 		}
 
-		return user;
+		return new User({
+			id: user.id,
+			name: user.name,
+			email: user.email,
+			gender: user.gender,
+			pronouns: user.pronouns,
+			phone: user.phone,
+			...(user.hostedOnboarding ? {
+				hostedOnboarding: new HostedUserOnboarding(
+					user.hostedOnboarding.id,
+					HostedOnboardingStatus[user.hostedOnboarding.status as keyof typeof HostedOnboardingStatus],
+				)
+			} : {})
+		});
 	}
 
 	@Mutation(_returns => HostedUserOnboarding)

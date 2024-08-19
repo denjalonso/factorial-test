@@ -42,5 +42,12 @@ export const UserEntity = new EntitySchema<User>({
 			nullable: true,
 			transformer: ValueObjectTransformer(UserPhone)
 		}
+	},
+	relations: {
+		hostedOnboarding: {
+			target: 'HostedOnboarding',
+			type: 'one-to-one',
+			inverseSide: 'user'
+		}
 	}
 });

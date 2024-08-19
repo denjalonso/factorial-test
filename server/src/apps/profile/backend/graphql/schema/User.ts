@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from 'type-graphql';
+import { HostedUserOnboarding } from './HostedUserOnboarding';
 
 @ObjectType()
 export class User {
@@ -20,6 +21,9 @@ export class User {
 	@Field({ nullable: true })
 	phone?: string;
 
+	@Field(type => HostedUserOnboarding, { nullable: true })
+	hostedOnboarding?: HostedUserOnboarding;
+
 	constructor(params: {
 		id: string;
 		name: string;
@@ -27,6 +31,7 @@ export class User {
 		gender?: string;
 		pronouns?: string;
 		phone?: string;
+		hostedOnboarding?: HostedUserOnboarding;
 	}) {
 		this.id = params.id;
 		this.name = params.name;
@@ -34,5 +39,6 @@ export class User {
 		this.gender = params.gender;
 		this.pronouns = params.pronouns;
 		this.phone = params.phone;
+		this.hostedOnboarding = params.hostedOnboarding;
 	}
 }

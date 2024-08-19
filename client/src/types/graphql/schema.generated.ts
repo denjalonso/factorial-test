@@ -101,6 +101,7 @@ export type User = {
   __typename?: 'User';
   email?: Maybe<Scalars['String']>;
   gender?: Maybe<Scalars['String']>;
+  hostedOnboarding?: Maybe<HostedUserOnboarding>;
   id: Scalars['ID'];
   name: Scalars['String'];
   phone?: Maybe<Scalars['String']>;

@@ -52,6 +52,10 @@ integration with different services would be an important factor to consider.
 
 
 ### Architecture overview
+
+![architecture](https://github.com/user-attachments/assets/4bcf8bb7-17ca-4555-bc8e-347cdf167a36)
+
+
 From an architectural and macro design point of view there does not seem to be any major challenge. I have opted
 for a single page application (SPA) with a backend on a 3-layer hexagonal architecture. I think this offers a good balance
 between simplicity and scalability.

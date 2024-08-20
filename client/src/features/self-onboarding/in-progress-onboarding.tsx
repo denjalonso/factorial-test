@@ -9,6 +9,7 @@ import {
 } from './in-progress-onboarding.generated';
 import { RequiredGraphQLType } from '../../utils/type-helpers';
 import UserOnboardingStepFlowModal from './step-flow';
+import { useEffect } from 'react';
 
 gql`
   fragment UserInProgressOnboardingHosted on HostedUserOnboarding {
@@ -52,7 +53,6 @@ const InProgressOnboardingHosted = ({
       },
     });
 
-  // @ts-expect-error
   const onOpenWorkflow = () => {
     if (onboarding.status === HostedOnboardingStatus.INVITED) {
       saveUserOnboardingAsStartedMutation();
@@ -72,6 +72,7 @@ const InProgressOnboardingHosted = ({
   return (
     <InProgressOnboarding
       user={onboarding.user}
+      onStart={onOpenWorkflow}
       onComplete={onCompleteWorkflow}
     />
   );
@@ -80,15 +81,21 @@ const InProgressOnboardingHosted = ({
 const InProgressOnboarding = ({
   user,
   onComplete,
+  onStart,
 }: {
   user: UserInProgressOnboarding_WorkerFragment;
   onComplete: () => Promise<unknown>;
+  onStart?: () => void;
 }) => {
   const { onClose } = useDisclosure();
   const onCompleteWorkflow = async () => {
     await onComplete();
     onClose();
   };
+
+  useEffect(() => {
+    onStart?.();
+  }, []);
 
   return (
     <UserOnboardingStepFlowModal
@@ -100,4 +107,4 @@ const InProgressOnboarding = ({
   );
 };
 
-export { InProgressOnboardingHosted };
+export { InProgressOnboardingHosted, InProgressOnboarding };

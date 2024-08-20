@@ -1,5 +1,4 @@
 import userEvent from '@testing-library/user-event';
-
 import {
   render,
   screen,
@@ -7,7 +6,10 @@ import {
   waitForLoadingToFinish,
 } from '../../test/test-utils';
 import { HostedOnboardingStatus } from '../../types';
-import { InProgressOnboardingHosted } from './in-progress-onboarding';
+import {
+  InProgressOnboardingHosted,
+  InProgressOnboarding,
+} from './in-progress-onboarding';
 
 describe('InProgressOnboarding', () => {
   const name = 'John';
@@ -48,8 +50,19 @@ describe('InProgressOnboarding', () => {
   });
 
   test('should set the onboarding to started status when starting and status is invited', async () => {
-    await setup({ status: HostedOnboardingStatus.INVITED });
+    const onStart = jest.fn();
+    render(
+      <InProgressOnboarding
+        user={{
+          id: 'user-id',
+          name,
+        }}
+        onComplete={jest.fn()}
+        onStart={onStart}
+      />,
+    );
     await waitForLoadingToFinish();
     await userEvent.click(screen.getByRole('button'));
+    expect(onStart).toHaveBeenCalled();
   });
 });

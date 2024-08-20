@@ -5,8 +5,8 @@ function DashBoard({ children }: React.PropsWithChildren) {
   return (
     <Box width="100vw" height="100vh" display="flex">
       <Box
-        ml={{ base: 0, md: 60 }}
-        pt={{ base: 0, md: 20 }}
+        ml={{ base: 0}}
+        pt={{ base: 0}}
         h="100vh"
         width="100vw"
         overflow="scroll">

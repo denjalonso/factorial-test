@@ -12,6 +12,13 @@ export class UserRepositoryMock implements UserRepository {
 		this.findMock = jest.fn();
 	}
 
+	findAll(): Promise<User[]> {
+        throw new Error('Method not implemented.');
+    }
+    update(user: User): Promise<void> {
+        throw new Error('Method not implemented.');
+    }
+
 	async save(user: User): Promise<void> {
 		this.saveMock(user);
 	}

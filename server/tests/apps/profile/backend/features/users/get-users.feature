@@ -15,7 +15,14 @@ Feature: Get user
     """
     {
       "data": {
-        "users": [{
+        "users": [
+        {
+            "id": "8b5ac071-9094-4c3f-b9c5-2d5cfb8a5fae",
+            "name": "Parrot"
+        },{
+            "id": "1b5d77a0-5c47-411f-9753-3a19b21fc2c1",
+            "name": "Parrot"
+        },{
             "id": "ef8ac118-8d7f-49cc-abec-78e0d05af80a",
             "name": "Parrot"
         }, {

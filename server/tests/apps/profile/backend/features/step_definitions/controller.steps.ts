@@ -1,12 +1,14 @@
 import assert from 'assert';
 import { AfterAll, BeforeAll, Given, Then } from 'cucumber';
 import request from 'supertest';
-
 import { ProfileBackendApp } from '../../../../../../src/apps/profile/backend/ProfileBackendApp';
+import container from "../../../../../../src/apps/profile/backend/dependency-injection";
+import { EnvironmentArranger } from '../../../../../contexts/shared/infrastructure/arranger/EnvironmentArranger';
 
 let _request: request.Test;
 let application: ProfileBackendApp;
 let _response: request.Response;
+let environmentArranger: EnvironmentArranger;
 
 Given('I send a GET request to {string}', (route: string) => {
 	_request = request(application.httpServer).get(route);
@@ -36,11 +38,16 @@ Then('the response should be', (data: string) => {
 	assert.deepStrictEqual(_response.body, JSON.parse(data));
 });
 
-BeforeAll(() => {
+BeforeAll(async () => {
+	environmentArranger = await container.get<Promise<EnvironmentArranger>>('Profile.EnvironmentArranger');
+	await environmentArranger.arrange();
+
 	application = new ProfileBackendApp();
-	application.start();
+	await application.start();
 });
 
-AfterAll(() => {
-	application.stop();
+AfterAll(async () => {
+	await environmentArranger.close();
+
+	await application.stop();
 });

@@ -6,8 +6,8 @@ export default function WorkerListPage() {
   return (
     <Page>
       <Center>
-        <Box w="85%">
-          <Heading textAlign="center">Users</Heading>
+        <Box w="full">
+          <Heading textAlign="center">Users onboarding management</Heading>
           <UserListStandalone />
         </Box>
       </Center>

@@ -1,5 +1,5 @@
 import { Connection, EntityMetadata } from 'typeorm';
-import { EnvironmentArranger } from '../arranger/EnvironmentArranger';
+import {EnvironmentArranger} from "../arranger/EnvironmentArranger";
 
 export class TypeOrmEnvironmentArranger extends EnvironmentArranger {
 	constructor(private _client: Promise<Connection>) {
@@ -16,7 +16,7 @@ export class TypeOrmEnvironmentArranger extends EnvironmentArranger {
 		try {
 			for (const entity of entities) {
 				const repository = (await this._client).getRepository(entity.name);
-				await repository.query(`TRUNCATE TABLE ${entity.tableName};`);
+				await repository.query(`TRUNCATE TABLE "${entity.tableName}" CASCADE;`);
 			}
 		} catch (error) {
 			throw new Error(`Unable to clean test database: ${error}`);

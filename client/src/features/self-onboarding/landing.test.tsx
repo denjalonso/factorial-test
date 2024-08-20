@@ -14,7 +14,7 @@ describe('UserOnboardingLanding', () => {
   };
 
   const getInProgress = () => screen.queryAllByText(/payroll.*/i)[0];
-  const getCompleted = () => screen.queryAllByText(/complete.*/i)[0];
+  const getCompleted = () => screen.queryAllByText(/congratulations.*/i)[0];
   const getInvalidOrExpired = () =>
     screen.queryAllByText(/invalid.*/i)[0] ??
     screen.queryAllByText(/expired.*/i)[0];

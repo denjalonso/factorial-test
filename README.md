@@ -5,8 +5,8 @@ which is the data ingestion necessary for the creation of a payroll.
 
 Without knowing if this applies to Factorial's problem and without going into very specific features, 
 I imagine an application that allows users to enter their personal and professional data,
-both on-premise and embedded, so the high reusability of the components and the ease of integration with different
-integration with different services would be an important factor to consider.
+both on-premise and embedded, so the high reusability of the components and the ease of integration 
+with different services would be an important factor to consider.
 
 ### Shaping of the problem
 

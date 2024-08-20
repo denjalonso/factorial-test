@@ -28,11 +28,14 @@ with different services would be an important factor to consider.
     * User can ingest users data through a rest end point
     * Page dev tools to fill the forms out with fake data
 
-#### Mockups
+#### Mockups and result
 
-<img width="1727" alt="Screenshot 2024-08-19 at 14 06 03" src="https://github.com/user-attachments/assets/a040ffd4-cb2d-49ae-a62d-521e78c21f04">
-<img width="1723" alt="Screenshot 2024-08-19 at 14 06 14" src="https://github.com/user-attachments/assets/87c5f538-072c-467a-9bd6-35851d27c292">
-<img width="1728" alt="Screenshot 2024-08-19 at 14 06 26" src="https://github.com/user-attachments/assets/ca505879-e116-4be0-8089-3b5ca56a4490">
+<img width="1728" alt="Screenshot 2024-08-20 at 11 46 31" src="https://github.com/user-attachments/assets/adb2236b-52d9-419f-8a7d-6d6ec6620ba3">
+<img width="1727" alt="Screenshot 2024-08-20 at 11 47 39" src="https://github.com/user-attachments/assets/01479902-c891-487b-a399-4a6ddfd2d2c9">
+<img width="1727" alt="Screenshot 2024-08-20 at 11 48 12" src="https://github.com/user-attachments/assets/d571a094-4bb0-4f86-802b-d2b9560dfeab">
+
+https://github.com/user-attachments/assets/53badd35-9855-4962-a47e-e101a83316fe
+
 
 
 ### Architecture overview
